@@ -3,6 +3,8 @@ const chromedriver = require('chromedriver');
 module.exports = {
     src_folders: ["steps"], //pasta com os steps definitions
     page_objects_path: 'pages/', //pasta com os seletores da página
+    custom_commands_path: 'helpers/commands/',
+    custom_assertions_path: 'helpers/assertions/',
     test_settings: {
         default: {
             skip_testcases_on_fail: false,

@@ -61,3 +61,14 @@ Eu quero validar meu carrinho de compras e verificar se os itens adiconados ao c
     Quando clicar no carrinho
     Então Eu pego screenshot da pagina "Carrinho"
     E Eu espero a página de "Carrinho" ter o mesmo layout
+
+  @acessibilidade
+  Cenario: Validar acessibilidade da página
+
+    Dado que eu acesso a pagina do ecommerce
+    E realizo a busca do produto "Nintendo Switch Lite"
+    E clico no produto
+    Quando clicar no botao Adicionar ao carrinho
+    Então devo visualizar mensagem de adicionado ao carrinho
+    Quando clicar no carrinho
+    Então Eu deveria validar a acessibilidade da página
