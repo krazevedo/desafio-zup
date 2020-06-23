@@ -3,12 +3,13 @@ const {Given, When, Then} = require('cucumber')
 
 Given('que eu acesso a pagina do ecommerce', function () {
     let home = client.page.home()
-       return home.navigate()
+    client.deleteCookies()
+    return home.navigate()
 });
 
 Given('realizo a busca do produto {string}', function (produto) {
     let home = client.page.home()
-    client.globals.produto = produto;
+    client.globals.produto = produto
     home.preencherBusca(produto)
     return home.buscarProduto();
 });
@@ -31,25 +32,22 @@ When('clicar no botao Adicionar ao carrinho', function () {
     return produto.adicionarCarrinho();
 });
 
-Then('devo visualizar mensagem de adicionado ao carrinho', function () {
-    let produto = client.page.produto()
-    return produto.validarAdicionadoCarrinho();
-});
-
 When('clicar no carrinho', function () {
     let produto = client.page.produto()
     return produto.clicarCarrinho();
 });
 
 When('adicionar no carrinho', function () {
-    let busca = client.page.busca()
     let produto = client.page.produto()
-    busca.validarResultadoBusca()
-    busca.selecionarProduto()
     produto.validarBuscaEProduto()
     produto.adicionarCarrinho()
     produto.validarAdicionadoCarrinho()
     return produto.clicarCarrinho();
+});
+
+Then('devo visualizar mensagem de adicionado ao carrinho', function () {
+    let produto = client.page.produto()
+    return produto.validarAdicionadoCarrinho();
 });
 
 Then('devo visualizar o produto corretamente no carrinho', function () {

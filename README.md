@@ -46,6 +46,8 @@ Execute o comando abaixo:
 ```shell script
 npm test -- --tags @1item
 ``` 
+> Coloquei dois cenarios alternativos para exemplificar outros tipos de testes que podemos automatizar.
+
 ## Visual regression
 
 Coloquei um teste de visual regression.
@@ -55,3 +57,56 @@ A primeira vez que o teste executar ele vai salvar o screenshot como referência
 Nas próximas execuções, caso ocorra alguma diferença de layout, será gerado uma imagem em png com a diferença. Acesse-a na pasta report-visual/visual-regression.
 
 Nesta pasta terá 3 arquivos, imagem referência, imagem corrente e imagem diferença. Ex: Carrinho-REFERENCE, Carrinho-CURRENT, Carrinho-DIFF
+
+## Teste de Acessibilidade
+
+Coloquei um teste de acessibilidade. Informando qual selector voce deseja verificar e ele executa os testes baseados no WCAG e nas melhores praticas de usabilidae.
+
+[Regras ](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
+
+
+```Javascript
+return client
+    .initAccessibility()
+    .assert.accessibility('#sc-retail-cart-container > div', {
+                          verbose: true,
+                          rules: {}
+                          }
+                      )
+```
+
+Exemplo de report
+
+```shell script
+√ Passed [ok]: Elements must only use allowed ARIA attributes
+√ Passed [ok]: ARIA role must be appropriate for the element
+√ Passed [ok]: ARIA hidden element must not contain focusable elements
+√ Passed [ok]: Required ARIA attributes must be provided
+√ Passed [ok]: Certain ARIA roles must contain particular children
+√ Passed [ok]: Certain ARIA roles must be contained by particular parents
+√ Passed [ok]: ARIA roles used must conform to valid values
+√ Passed [ok]: ARIA attributes must conform to valid values
+√ Passed [ok]: ARIA attributes must conform to valid names
+√ Passed [ok]: autocomplete attribute must be used correctly
+√ Passed [ok]: Inline text spacing must be adjustable with custom stylesheets
+√ Passed [ok]: Buttons must have discernible text
+√ Passed [ok]: Elements must have sufficient color contrast
+√ Passed [ok]: IDs of active elements must be unique
+√ Passed [ok]: IDs used in ARIA and labels must be unique
+√ Passed [ok]: id attribute value must be unique
+√ Passed [ok]: Headings must not be empty
+√ Passed [ok]: Form field should not have multiple label elements
+√ Passed [ok]: Heading levels should only increase by one
+√ Passed [ok]: Links with the same name have a similar purpose
+√ Passed [ok]: Images must have alternate text
+√ Passed [ok]: Alternative text of images should not be repeated as text
+√ Passed [ok]: Input buttons must have discernible text
+√ Passed [ok]: Form elements should have a visible label
+√ Passed [ok]: Form elements must have labels
+√ Passed [ok]: Links must have discernible text
+√ Passed [ok]: <ul> and <ol> must only directly contain <li>, <script> or <template> elements
+√ Passed [ok]: <li> elements must be contained in a <ul> or <ol>
+√ Passed [ok]: [role='img'] elements have an alternative text
+√ Passed [ok]: Elements should not have tabindex greater than zero
+Failed [ok]: (Form elements must have labels [<select name="quantity" autocomplete="off" data-a-touch-header="Quantidade" tabindex="0" class="a-native-dropdown">]) - expected "true" but got: "false"
+```

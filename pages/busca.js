@@ -6,17 +6,17 @@ const buscaComandos = {
         .click('@produto')
     },
     pegarDadosDoProduto() {
-    this.waitForElementPresent('@produto', 6000)
-    return client
+    this.waitForElementPresent('@tituloProduto', 6000)
+    client
         .getText('div.s-search-results * span.a-price', function(result){
            length = result.value.replace(/\n/g, '').length
            text = result.value.replace(/\n/g, '');
            client.globals.preco = [text.slice(0, length-2), ",", text.slice(length-2)].join('');
         })
-        .getText('div.s-search-results * h2 a span', function(result){
+        .getText('div.s-search-results * div h2 a span', function(result){
           client.globals.tituloBusca = result.value
         })
-
+    return
     },
     validarResultadoBusca() {
     return this

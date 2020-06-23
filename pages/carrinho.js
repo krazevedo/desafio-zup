@@ -32,7 +32,12 @@ const carrinhoComandos = {
         .assert.containsText('@preco', client.globals.preco)
         .assert.containsText('@subtotal', client.globals.preco)
         .assert.containsText('@subtotalBox', client.globals.preco)
-     }
+     },
+    removerProdutoCarrinho(){
+    return this
+         .waitForElementVisible('@excluir')
+         .click('@excluir')
+    }
 };
 
 module.exports = {
@@ -45,6 +50,7 @@ module.exports = {
         qtdSubtotal: '#sc-subtotal-label-activecart',
         importacao: '#importer-status-imported h2',
         subtotal: '#sc-subtotal-amount-activecart > span',
-        subtotalBox: '#sc-subtotal-amount-buybox > span'
+        subtotalBox: '#sc-subtotal-amount-buybox > span',
+        excluir: 'input[type=submit]'
       }
 };

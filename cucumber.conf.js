@@ -32,10 +32,9 @@ AfterAll(async () => {
   }, 0);
 });
 
-After(function () {
+After(function (scenario) {
   let shotPath = path.resolve(`./screenshots/${faker.random.uuid()}.png`);
-
-  return new Promise((resolve, reject) => {
+   return new Promise((resolve, reject) => {
     client
       .saveScreenshot(shotPath)
       .then((res) => {

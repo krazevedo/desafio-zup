@@ -5,16 +5,20 @@ module.exports = {
     page_objects_path: 'pages/', //pasta com os seletores da página
     custom_commands_path: 'helpers/commands/',
     custom_assertions_path: 'helpers/assertions/',
+      test_workers: {
+        enabled: true,
+        workers: "auto"
+      },
     test_settings: {
         default: {
-            skip_testcases_on_fail: false,
+            skip_testcases_on_fail: true,
+            persist_globals: true,
             globals : {
               "produto" : "",
               "tituloBusca" : "",
               "tituloProduto" : "",
               "preco": ""
             },
-            persist_globals: true,
             screenshots: {
                 enabled: true,
                 path: 'screenshots'
